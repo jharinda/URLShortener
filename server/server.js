@@ -1,6 +1,7 @@
 const { urlencoded } = require('express');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { nanoid } = require('nanoid');
 const Link = require('./models/Link');
 
@@ -10,7 +11,8 @@ mongoose.connect('mongodb://localhost/shortner')
 
 const app = express();
 
-app.use(urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
 
 app.post('/', async (req, res) => {
 
@@ -21,7 +23,9 @@ app.post('/', async (req, res) => {
         });
 
         const newLink = await linkInfo.save();
-        res.send(`http://localhost:3000/${newLink.shortCode}`);
+        res.json({
+            redirectUrl: `http://localhost:3000/${newLink.shortCode}`
+        });
     } catch (err) {
         console.log(err);
     }

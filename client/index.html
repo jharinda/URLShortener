@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
     <title>Document</title>
 </head>
 
 <body>
-    <form action="http://localhost:3000/" method="post">
+    <form id="linkForm" method="post">
         <input type="url" name="link">
         <button type="submit">OK</button>
+        <div class="generated-link" id="generatedLink"></div>
     </form>
 </body>
 
